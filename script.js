@@ -246,6 +246,16 @@ function lightAndFloatKrathong() {
       if (noteInKrathong) noteInKrathong.style.display = 'none';
       if (grabbedNote) grabbedNote.classList.remove('hidden');
 
+      kidWrap.classList.add('celebrating');
+      const faceProfile = document.getElementById('kidFaceProfile');
+      const faceFront = document.getElementById('kidFaceFront');
+      if (faceProfile) faceProfile.classList.add('hidden');
+      if (faceFront) faceFront.classList.remove('hidden');
+      if (window.spawnSparkleBurst) {
+        const kidRect = kidWrap.getBoundingClientRect();
+        window.spawnSparkleBurst(kidRect.left + kidRect.width * 0.65, kidRect.top + 30);
+      }
+
       // Show cartoon fighting/scuffle splash effect when multiple people fight over expensive notes
       if (extraCount > 0) {
         const scuffle = document.createElement('div');
