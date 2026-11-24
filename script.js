@@ -262,7 +262,11 @@ function lightAndFloatKrathong() {
           </svg>
         `;
         stageWrap.appendChild(scuffle);
-        setTimeout(() => scuffle.remove(), 1100);
+        renderEl.classList.add('scuffle-wobble');
+        setTimeout(() => {
+          scuffle.remove();
+          renderEl.classList.remove('scuffle-wobble');
+        }, 1100);
       }
     }, 2000);
   }, 3400);
