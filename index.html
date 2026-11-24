@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ลอยกระทง</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body style="cursor: pointer;">
+  <div class="night-scene" aria-hidden="true">
+    <canvas id="ambientCanvas"></canvas>
+
+    <div class="moon-wrapper">
+      <div class="moon-halo"></div>
+      <div class="moon">
+        <span class="crater c1"></span>
+        <span class="crater c2"></span>
+        <span class="crater c3"></span>
+      </div>
+    </div>
+
+    <svg class="horizon-silhouette" viewBox="0 0 1440 180" preserveAspectRatio="none">
+      <path d="M0,180 L0,145 Q80,135 150,148 L180,140 L195,95 L202,60 L209,95 L224,140 Q310,130 420,148 Q540,128 650,146 L685,135 L698,85 L704,42 L710,85 L723,135 L742,112 L748,80 L754,112 L768,142 Q900,132 1040,148 Q1180,126 1290,144 L1315,115 L1322,78 L1329,115 L1348,144 Q1395,140 1440,148 L1440,180 Z" fill="#080d1f"/>
+    </svg>
+
+    <div class="river" id="riverArea">
+      <div class="moon-reflection"></div>
+      <div class="river-waves"></div>
+    </div>
+  </div>
+
+  <!-- Banknote Selector (20, 50, 100, 500, 1000) -->
+  <div class="banknote-selector" id="banknoteSelector">
+    <button type="button" class="note-btn note-20 selected" data-note="20">๒๐</button>
+    <button type="button" class="note-btn note-50" data-note="50">๕๐</button>
+    <button type="button" class="note-btn note-100" data-note="100">๑๐๐</button>
+    <button type="button" class="note-btn note-500" data-note="500">๕๐๐</button>
+    <button type="button" class="note-btn note-1000" data-note="1000">๑๐๐๐</button>
+  </div>
+
+  <!-- Krathong centered on screen; click anywhere to light candle and float -->
+  <main class="minimal-stage">
+    <div class="krathong-stage-wrap" id="krathongStageWrap">
+      <div class="candle-aura hidden" id="dockCandleAura"></div>
+      <div class="krathong-render preview-bob" id="dockKrathongRender"></div>
+      <div class="water-reflection-glow"></div>
+
+      <!-- Little kid swimming in the river to grab the Thai banknote -->
+      <div class="swimming-kid-wrap hidden" id="swimmingKidWrap" aria-hidden="true">
+        <svg viewBox="0 0 180 120" width="235" height="160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Water splashes -->
+          <ellipse cx="90" cy="94" rx="58" ry="10" fill="rgba(180, 225, 255, 0.35)" />
+          <path d="M26,88 Q42,78 58,88 Q74,78 90,88 Q106,78 122,88 Q138,78 154,88" fill="none" stroke="rgba(220, 245, 255, 0.7)" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Swimming Kid Body & Head -->
+          <g class="kid-swim-bob">
+            <!-- Back Arm -->
+            <path d="M98,74 Q122,56 138,66" fill="none" stroke="#e5a67c" stroke-width="10" stroke-linecap="round"/>
+            <!-- Torso in water -->
+            <path d="M55,84 Q75,65 108,74 L112,90 L52,90 Z" fill="#4f86f7" />
+            <!-- Head -->
+            <circle cx="115" cy="56" r="19" fill="#f7c49e" stroke="#d9976c" stroke-width="1.5"/>
+            <!-- Hair -->
+            <path d="M96,54 Q98,34 116,35 Q132,35 134,52 Q125,44 115,45 Q104,44 96,54 Z" fill="#231a18"/>
+            <!-- Cute Eyes & Smile -->
+            <circle cx="122" cy="55" r="2.2" fill="#231a18"/>
+            <path d="M120,64 Q125,67 129,63" fill="none" stroke="#9e523b" stroke-width="1.8" stroke-linecap="round"/>
+            <!-- Reaching Front Arm -->
+            <path d="M102,78 Q128,74 148,56" fill="none" stroke="#f7c49e" stroke-width="10" stroke-linecap="round"/>
+            <!-- Grabbed Thai Banknote in Kid's Hand -->
+            <g class="grabbed-note hidden" id="grabbedNote" transform="translate(132, 32) rotate(-15)">
+              <rect id="grabbedNoteRect" x="0" y="0" width="42" height="22" rx="2.5" fill="#4aa96c" stroke="#2d7a47" stroke-width="1.3"/>
+              <rect id="grabbedNoteInner" x="3" y="3" width="36" height="16" rx="1.5" fill="none" stroke="#a6e3b9" stroke-width="0.9" stroke-dasharray="2 2"/>
+              <text id="grabbedNoteText" x="21" y="15" text-anchor="middle" fill="#ffffff" font-size="9.5" font-weight="bold" font-family="sans-serif">๒๐</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
